@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="static\style.css">
     <link rel="icon" type="image/png" sizes="32x32" 
     href="{{ url_for('static', filename='favicon-32x32.png') }}">
-    <title>Document</title>
+    <script src="static\main.js"></script>
+    <title>AudioRIP</title>
 </head>
 <body>
-    <h1>test</h1>
+    <div class="input">
+        <input name="linkInput" type="text" id="input-form">
+        <button id="submit-button" onclick="sendLink()">Get Link</button>
+    </div>
 </body>
 </html>

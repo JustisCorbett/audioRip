@@ -8,6 +8,7 @@ flask = "*"
 yt-dlp = "*"
 ffmpeg = "*"
 waitress = "*"
+ffprobe = "*"
 
 [dev-packages]
 
