@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, jsonify
-import ffmpeg
+import logging
 import yt_dlp
+from contextlib import redirect_stdout
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -13,9 +15,19 @@ def get_link():
     data = request.get_json()
     link = data["link"]
     print(link)
+    file = BytesIO()
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+        }],
+        'ffmpeg_location': 'ffmpeg-4.4-essentials_build/bin',
+        'outtmpl': '-',
+        'logger': logging.getLogger()
+    }
+    with redirect_stdout(file):
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([link])
 
-    ydl_opts = ["-x", "-o temp/%(title)s.%(ext)s"]
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([link])
-
-    return jsonify(True)
+    return jsonify(file)
+#"-o temp/%(title)s.%(ext)s"    '

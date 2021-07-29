@@ -12,6 +12,6 @@ async function sendLink() {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
     });
-    console.log(JSON.stringify(data));
+    console.log(response.json());
     return response.json();
 }
