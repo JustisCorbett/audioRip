@@ -4,20 +4,7 @@ import yt_dlp
 from contextlib import redirect_stdout
 from io import BytesIO
 
-#app = Flask(__name__)
-# define Flask app
-def create_app():
-  try:
-
-    web_app = Flask(__name__)
-
-    logging.info('Starting up..')
-
-    return web_app
-
-  except Exception as e:
-    logging.exception(e)
-
+app = Flask(__name__)
 
 @app.route("/")
 def index():
