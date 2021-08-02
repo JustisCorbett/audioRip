@@ -31,6 +31,5 @@ def get_link():
             ydl.download([link])
     data = {"file": file}
     file.seek(0)
-    print(file.name)
     return send_file(file)
 #"-o temp/%(title)s.%(ext)s"    '
