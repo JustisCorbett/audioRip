@@ -28,6 +28,6 @@ def get_link():
     with redirect_stdout(file):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([link])
-
-    return jsonify(file)
+    data = {"file": file}
+    return jsonify(data)
 #"-o temp/%(title)s.%(ext)s"    '
