@@ -9,6 +9,7 @@ yt-dlp = "*"
 ffmpeg = "*"
 waitress = "*"
 ffprobe = "*"
+python-magic-bin = "*"
 
 [dev-packages]
 

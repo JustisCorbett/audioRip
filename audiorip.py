@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, send_file
 import logging
+import magic
 import yt_dlp
 from contextlib import redirect_stdout
 from io import BytesIO
@@ -29,5 +30,6 @@ def get_link():
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([link])
     data = {"file": file}
+    file.seek(0)
     return send_file(file)
 #"-o temp/%(title)s.%(ext)s"    '
