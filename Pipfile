@@ -10,6 +10,7 @@ ffmpeg = "*"
 waitress = "*"
 ffprobe = "*"
 python-magic-bin = "*"
+python-magic = "*"
 
 [dev-packages]
 
