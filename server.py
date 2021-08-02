@@ -1,3 +1,3 @@
 from waitress import serve
-import app
-serve(app.app, listen='*:8080')
+import audiorip
+serve(audiorip.app, listen='*:8080')

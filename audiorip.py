@@ -31,5 +31,6 @@ def get_link():
             ydl.download([link])
     data = {"file": file}
     file.seek(0)
-    return send_file(file)
+    mime_type = magic.from_buffer(file.read(1024), mime=True)
+    return send_file(file, mimetype=mime_type)
 #"-o temp/%(title)s.%(ext)s"    '
