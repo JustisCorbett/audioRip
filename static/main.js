@@ -13,8 +13,8 @@ async function sendLink() {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
     });
-    let blob = new Blob([response.body], {type: response.headers["Content-Type"]});
+    let blob = response.blob();
     audioPlayer.src = URL.createObjectURL(blob);
-    console.log(response);
-    return response;
+    console.log(response.blob());
+    return True;
 }
