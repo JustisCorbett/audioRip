@@ -32,5 +32,6 @@ def get_link():
     data = {"file": file}
     file.seek(0)
     mime_type = magic.from_buffer(file.read(1024), mime=True)
+    print(mime_type)
     return send_file(file, mimetype=mime_type)
 #"-o temp/%(title)s.%(ext)s"    '
