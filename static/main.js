@@ -16,5 +16,5 @@ async function sendLink() {
     let blob = new Blob([response.body], {type: response.headers["Content-Type"]});
     audioPlayer.src = URL.createObjectURL(blob);
     console.log(response);
-    return response.json();
+    return response;
 }
