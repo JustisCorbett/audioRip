@@ -1,7 +1,8 @@
 async function sendLink() {
-    audioPlayer = document.getElementById("audio-player")
-    input = document.getElementById("input-form").value
-    data = {link: input}
+    audioPlayer = document.getElementById("audio-player");
+    link = document.getElementById("link");
+    input = document.getElementById("input-form").value;
+    data = {link: input};
     const response = await fetch("/get_link", {
         method: 'POST',
         mode: 'cors',
@@ -13,8 +14,10 @@ async function sendLink() {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
     });
-    let blob = response.blob();
-    audioPlayer.src = URL.createObjectURL(blob);
-    console.log(response.blob());
-    return True;
+    let blob = await response.blob();
+    let url = URL.createObjectURL(blob);
+    audioPlayer.src = url;
+    link.href = url;
+    console.log(blob);
+    return 1;
 }

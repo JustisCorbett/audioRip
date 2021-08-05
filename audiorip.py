@@ -21,10 +21,13 @@ def get_link():
         'format': 'bestaudio/best',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
         }],
         'ffmpeg_location': 'ffmpeg-4.4-essentials_build/bin',
         'outtmpl': '-',
-        'logger': logging.getLogger()
+        'logger': logging.getLogger(),
+        'quiet': True,
     }
     with redirect_stdout(file):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -32,6 +35,7 @@ def get_link():
     data = {"file": file}
     file.seek(0)
     mime_type = magic.from_buffer(file.read(1024), mime=True)
+    file.seek(0)
     print(mime_type)
     return send_file(file, mimetype=mime_type)
 #"-o temp/%(title)s.%(ext)s"    '
