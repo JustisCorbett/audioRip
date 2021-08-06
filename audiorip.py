@@ -15,7 +15,6 @@ def index():
 def get_link():
     data = request.get_json()
     link = data["link"]
-    file_info = BytesIO()
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
