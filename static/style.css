@@ -1,19 +1,81 @@
 :root {
     --blackish: #242130;
-    --blue: #48beff;
-    --light-blue: #3dfaff;
+    --dark-turqoise: #007A66;
+    --turqoise: hsl(171, 100%, 41%);
     --red: #e3170a;
     --white: #f6f6f6;
     --title-font: 'Comfortaa', cursive;
     --text-font: 'Roboto', sans-serif;
 }
 
-body {
-    background-color: var(--blackish);
-    font-family: var(--text-font);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.title {
-    color: var(--light-blue);
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: var(--blackish);
+    font-family: var(--text-font);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title-top {
+    color: var(--turqoise);
     font-family: var(--title-font);
+    font-size: 8rem;
+}
+
+.input-container {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-box {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 4px solid var(--turqoise);
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.result-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 4px solid var(--turqoise);
+    background-color: var(--dark-turqoise);
+}
+
+.song-title {
+    font-size: 2rem;
+    color: var(--white);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.link {
+    font-size: 3rem;
+    color
 }

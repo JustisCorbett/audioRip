@@ -15,11 +15,18 @@
     <title>AudioRIP</title>
 </head>
 <body>
-    <div class="input">
-        <input name="linkInput" type="text" id="input-form">
-        <button id="submit-button" onclick="sendLink()">Get Link</button>
+    <div class="title-top">AudioRip</div>
+    <div class="input-container">
+        <input class="input is-primary" name="linkInput" type="text" id="input-form" placeholder="Enter URL...">
+        <button class="button is-primary" id="submit-button" onclick="sendLink()">Rip It</button>
     </div>
-    <video controls id="audio-player"></video>
-    <a id="link">Download</a>
+    <div class="results-box">
+        <div id="1" class="result-box">
+            <div class="song-title">Test Title - Me.mp3</div>
+            <audio controls id="audio-player"></audio>
+            <a id="link" download=""><div class="button is-link">Download</div></a>
+        </div>
+    </div>
+    
 </body>
 </html>
