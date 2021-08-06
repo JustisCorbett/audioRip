@@ -6,6 +6,7 @@
     --white: #f6f6f6;
     --title-font: 'Comfortaa', cursive;
     --text-font: 'Roboto', sans-serif;
+    font-size: 1vw !important;
 }
 
 * {
@@ -17,6 +18,7 @@
 html {
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -27,13 +29,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
+    overflow: hidden;
 }
 
 .title-top {
     color: var(--turqoise);
     font-family: var(--title-font);
     font-size: 8rem;
+    padding: 2rem;
 }
 
 .input-container {
@@ -42,6 +46,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
 }
 
 .results-box {
@@ -68,7 +73,7 @@ body {
 }
 
 .song-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--white);
     overflow: hidden;
     white-space: nowrap;
@@ -76,6 +81,14 @@ body {
 }
 
 .link {
-    font-size: 3rem;
+    font-size: 2rem;
     color
+}
+
+.button {
+    font-size: 1.5rem !important;
+}
+
+.input {
+    font-size: 1.5rem !important;
 }

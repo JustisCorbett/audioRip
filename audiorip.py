@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_from_directory
 import logging
 import yt_dlp
 import os
@@ -34,4 +34,4 @@ def get_link():
     for name in os.listdir(temp_path):
         if title in name:
             found_file = name
-    return send_file(temp_path + "/" + found_file)
+    return send_from_directory(temp_path, found_file, as_attachment=True)
