@@ -8,6 +8,8 @@ from io import BytesIO
 
 app = Flask(__name__)
 
+temp_path = os.environ.get("TEMP_FOLDER_PATH")
+
 @app.route("/")
 def index():
     return render_template('index.html')
@@ -16,7 +18,6 @@ def index():
 def get_link():
     data = request.get_json()
     link = data["link"]
-    print(link)
     file_info = BytesIO()
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -33,13 +34,14 @@ def get_link():
     with redirect_stdout(file_info):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(link, download=True)
+            ext = info.get("ext")
             filename = ydl.prepare_filename(info)
-    print(filename)
-    for name in os.listdir('/temp'):
-        if filename in name:
-            print (name)
-    mime_type = magic.from_buffer(file.read(1024), mime=True)
-    file.seek(0)
-    print(mime_type)
-    return send_file(file)
+    title = filename.replace(("." + ext), "")
+    title = title.replace(("temp/"), "")
+    for name in os.listdir(temp_path):
+        if title in name:
+            found_file = name
+   # mime_type = magic.from_buffer(file.read(1024), mime=True)
+    #file.seek(0)
+    return send_file(temp_path + "/" + found_file)
 #"-o temp/%(title)s.%(ext)s"    '
