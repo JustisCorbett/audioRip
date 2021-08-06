@@ -1,3 +1,19 @@
-h1 {
-    color: brown;
+:root {
+    --blackish: #242130;
+    --blue: #48beff;
+    --light-blue: #3dfaff;
+    --red: #e3170a;
+    --white: #f6f6f6;
+    --title-font: 'Comfortaa', cursive;
+    --text-font: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--blackish);
+    font-family: var(--text-font);
+}
+
+.title {
+    color: var(--light-blue);
+    font-family: var(--title-font);
 }
