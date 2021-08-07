@@ -1,5 +1,4 @@
 async function sendLink() {
-    audioPlayer = document.getElementById("audio-player");
     link = document.getElementById("link");
     input = document.getElementById("input-form").value;
     data = {link: input};
@@ -14,10 +13,12 @@ async function sendLink() {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
     });
+    let headers = response.headers
     let blob = await response.blob();
     let url = URL.createObjectURL(blob);
-    audioPlayer.src = url;
     link.href = url;
     console.log(blob);
+    filename = headers.get("Content-Disposition").split("filename=")[1];
+    console.log(filename)
     return 1;
 }
