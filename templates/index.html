@@ -21,7 +21,7 @@
         <button class="button is-primary" id="submit-button" onclick="sendLink()">Rip It</button>
     </div>
     <div id="1" class="result-box">
-        <img src="{{ url_for('static', filename='Infinity-1s-200px.svg') }}" id="loading"></img>
+        <img src="{{ url_for('static', filename='Infinity-1s-200px.svg') }}" id="loading" class="hidden"></img>
         <div id="song-title" class="song-title">Enter a Youtube URL (other sites might work, not tested)</div>
         <a class="hidden" id="link" download=""><div class="button is-link">Download</div></a>
     </div>

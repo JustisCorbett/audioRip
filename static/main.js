@@ -8,6 +8,7 @@ async function sendLink() {
         loading.classList.toggle("hidden");
     }
     songTitle = document.getElementById("song-title");
+    songTitle.innerText = "Ripping. Please Wait..."
     input = document.getElementById("input-form").value;
     data = {link: input};
     const response = await fetch("/get_link", {
