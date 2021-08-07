@@ -1,5 +1,12 @@
 async function sendLink() {
     link = document.getElementById("link");
+    loading = document.getElementById("loading");
+    if (link.classList.contains("hidden") == false) {
+        link.classList.toggle("hidden");
+    } 
+    if (loading.classList.contains("hidden")) {
+        loading.classList.toggle("hidden");
+    }
     songTitle = document.getElementById("song-title");
     input = document.getElementById("input-form").value;
     data = {link: input};
@@ -21,6 +28,12 @@ async function sendLink() {
     let url = URL.createObjectURL(blob);
     link.href = url;
     link.download = cleanFilename;
+    if (link.classList.contains("hidden")) {
+        link.classList.toggle("hidden");
+    }
+    if (loading.classList.contains("hidden") == false) {
+        loading.classList.toggle("hidden");
+    }
     songTitle.innerText = cleanFilename;
     console.log(filename);
     return 1;

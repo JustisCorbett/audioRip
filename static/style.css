@@ -55,7 +55,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between left;
     border: 4px solid var(--turqoise);
     border-radius: 8px;
     background-color: var(--dark-turqoise);
@@ -81,4 +81,8 @@ body {
 
 .input {
     font-size: 1.5rem !important;
+}
+
+.hidden {
+    display: none;
 }
