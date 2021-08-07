@@ -55,7 +55,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     border: 4px solid var(--turqoise);
     border-radius: 8px;
     background-color: var(--dark-turqoise);
@@ -67,6 +67,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    margin-left: 1rem;
 }
 
 .link {
