@@ -22,20 +22,27 @@ async function sendLink() {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
     });
-    let headers = response.headers
-    filename = headers.get("Content-Disposition").split("filename=")[1];
-    cleanFilename = filename.split('"')[1];
-    let blob = await response.blob();
-    let url = URL.createObjectURL(blob);
-    link.href = url;
-    link.download = cleanFilename;
-    if (link.classList.contains("hidden")) {
-        link.classList.toggle("hidden");
+    if (response.ok) {
+        let headers = response.headers
+        filename = headers.get("Content-Disposition").split("filename=")[1];
+        cleanFilename = filename.split('"')[1];
+        let blob = await response.blob();
+        let url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = cleanFilename;
+        if (link.classList.contains("hidden")) {
+            link.classList.toggle("hidden");
+        }
+        if (loading.classList.contains("hidden") == false) {
+            loading.classList.toggle("hidden");
+        }
+        songTitle.innerText = cleanFilename;
+    } else {
+        if (loading.classList.contains("hidden") == false) {
+            loading.classList.toggle("hidden");
+        }
+        re = await response.json()
+        songTitle.innerText = re["error"];
     }
-    if (loading.classList.contains("hidden") == false) {
-        loading.classList.toggle("hidden");
-    }
-    songTitle.innerText = cleanFilename;
-    console.log(filename);
     return 1;
 };

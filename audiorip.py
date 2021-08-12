@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, Response
 import logging
 import yt_dlp
 import os
@@ -25,13 +25,16 @@ def get_link():
         'outtmpl': 'temp/%(title)s.%(ext)s',
         'logger': logging.getLogger(),
     }
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(link, download=True)
-        ext = info.get("ext")
-        filename = ydl.prepare_filename(info)
-    title = filename.replace(("." + ext), "")
-    title = title.replace(("temp/"), "")
-    for name in os.listdir(temp_path):
-        if title in name:
-            found_file = name
-    return send_from_directory(temp_path, found_file, as_attachment=True)
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(link, download=True)
+            ext = info.get("ext")
+            filename = ydl.prepare_filename(info)
+        title = filename.replace(("." + ext), "")
+        title = title.replace(("temp/"), "")
+        for name in os.listdir(temp_path):
+            if title in name:
+                found_file = name
+        return send_from_directory(temp_path, found_file, as_attachment=True)
+    except Exception as e:
+        return Response("{'error': e}", status=403, mimetype='application/json')
