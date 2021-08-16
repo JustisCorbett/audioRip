@@ -33,6 +33,15 @@ body {
     overflow: hidden;
 }
 
+.main-box {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
 .title-top {
     color: var(--turqoise);
     font-family: var(--title-font);
@@ -41,7 +50,7 @@ body {
 }
 
 .input-container {
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -50,7 +59,7 @@ body {
 }
 
 .result-box {
-    width: 50%;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -84,5 +93,14 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.selection {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
 }

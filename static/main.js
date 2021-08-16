@@ -1,6 +1,16 @@
+async function hideSelect() {
+    select = document.getElementById("audio-format");
+    div = select.parentNode;
+    console.log(select);
+    console.log(div);
+    div.classList.toggle("hidden");
+}
+
 async function sendLink() {
     link = document.getElementById("link");
     loading = document.getElementById("loading");
+    audioVideo = document.getElementById("audio-video").value;
+
     if (link.classList.contains("hidden") == false) {
         link.classList.toggle("hidden");
     } 

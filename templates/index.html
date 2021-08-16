@@ -15,15 +15,44 @@
     <title>AudioRIP</title>
 </head>
 <body>
-    <div class="title-top">AudioRip</div>
-    <div class="input-container">
-        <input class="input is-primary" name="linkInput" type="text" id="input-form" placeholder="Enter URL...">
-        <button class="button is-primary" id="submit-button" onclick="sendLink()">Rip It</button>
-    </div>
-    <div id="1" class="result-box">
-        <img src="{{ url_for('static', filename='Infinity-1s-200px.svg') }}" id="loading" class="hidden"></img>
-        <div id="song-title" class="song-title">Enter a Youtube URL (other sites might work, not tested)</div>
-        <a class="hidden" id="link" download=""><div class="button is-link">Download</div></a>
+    <div class="main-box">
+        <div class="title-top">AudioRip</div>
+        <div class="input-container">
+            <input class="input is-primary" name="linkInput" type="text" id="input-form" placeholder="Enter URL...">
+            <button class="button is-primary" id="submit-button" onclick="sendLink()">Rip It</button>
+        </div>
+        <div class="selection">
+            <div class="select is-primary is-medium">
+                <select onchange="hideSelect()" id="audio-video">
+                    <option value="audio">Download Only Audio</option>
+                    <option value="video">Download Video (Best Quality)</option>
+                </select>
+            </div>
+            <div class="select is-primary is-medium">
+                <select id="audio-format">
+                    <option value="best">Best Quality</option>
+                    <optgroup label="MP3">
+                        <option value="mp3-128">mp3-128 kbps</option>
+                        <option value="mp3-256">mp3-256 kbps</option>
+                    </optgroup>
+                    <optgroup label="OPUS">
+                        <option value="opus-128">opus-128 kbps</option>
+                        <option value="opus-256">opus-256 kbps</option>
+                    </optgroup>
+                    <optgroup label="AAC">
+                        <option value="aac">AAC</option>
+                    </optgroup>
+                    <optgroup label="FLAC">
+                        <option value="flac">FLAC</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div id="1" class="result-box">
+            <img src="{{ url_for('static', filename='Infinity-1s-200px.svg') }}" id="loading" class="hidden"></img>
+            <div id="song-title" class="song-title">Enter a Youtube URL (other sites might work, not tested)</div>
+            <a class="hidden" id="link" download=""><div class="button is-link">Download</div></a>
+        </div>
     </div>
 </body>
 </html>
