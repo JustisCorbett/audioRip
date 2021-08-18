@@ -1,15 +1,28 @@
 async function hideSelect() {
-    select = document.getElementById("audio-format");
-    div = select.parentNode;
+    let select = document.getElementById("audio-format");
+    let div = select.parentNode;
     console.log(select);
     console.log(div);
     div.classList.toggle("hidden");
 }
 
 async function sendLink() {
-    link = document.getElementById("link");
-    loading = document.getElementById("loading");
-    audioVideo = document.getElementById("audio-video").value;
+    let link = document.getElementById("link");
+    let loading = document.getElementById("loading");
+    let audioVideo = document.getElementById("audio-video").value;
+    let options = document.getElementById("audio-format").value.split("-");
+    let quality
+    let format
+    if (audioVideo == "audio" && options[0] !== "best") {
+        quality = options[1];
+        format = options[0];
+    } else {
+        quality = "best";
+        format = "none";
+    }
+    if (options[0] = "best") {
+        format = "none"
+    }
 
     if (link.classList.contains("hidden") == false) {
         link.classList.toggle("hidden");
@@ -17,10 +30,13 @@ async function sendLink() {
     if (loading.classList.contains("hidden")) {
         loading.classList.toggle("hidden");
     }
-    songTitle = document.getElementById("song-title");
+    let songTitle = document.getElementById("song-title");
     songTitle.innerText = "Ripping. Please Wait..."
-    input = document.getElementById("input-form").value;
-    data = {link: input};
+    let input = document.getElementById("input-form").value;
+    let data = {link: input,
+                quality: quality,
+                format: format,
+                audioVideo: audioVideo};
     const response = await fetch("/get_link", {
         method: 'POST',
         mode: 'cors',

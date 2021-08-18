@@ -14,17 +14,28 @@ def index():
 @app.route("/get_link", methods=["POST"])
 def get_link():
     data = request.get_json()
+    print(data)
     link = data["link"]
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            #'preferredcodec': 'mp3',
-            #'preferredquality': '192',
-        }],
-        'outtmpl': 'temp/%(title)s.%(ext)s',
-        'logger': logging.getLogger(),
-    }
+    audio_video = data["audioVideo"]
+    form = data["format"]
+    quality = data["quality"]
+    if (audio_video == "audio"):
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': form,
+                'preferredquality': quality,
+            }],
+            'outtmpl': 'temp/%(title)s.%(ext)s',
+            'logger': logging.getLogger(),
+        }
+    else:
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'outtmpl': 'temp/%(title)s.%(ext)s',
+            'logger': logging.getLogger(),
+        }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(link, download=True)
