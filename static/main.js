@@ -20,7 +20,7 @@ async function sendLink() {
         quality = "best";
         format = "none";
     }
-    if (options[0] = "best") {
+    if (options[0] == "best") {
         format = "none"
     }
 
@@ -37,6 +37,8 @@ async function sendLink() {
                 quality: quality,
                 format: format,
                 audioVideo: audioVideo};
+    console.log(options)
+    console.log(data)
     const response = await fetch("/get_link", {
         method: 'POST',
         mode: 'cors',

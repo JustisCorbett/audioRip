@@ -19,7 +19,7 @@ def get_link():
     audio_video = data["audioVideo"]
     form = data["format"]
     quality = data["quality"]
-    if (audio_video == "audio"):
+    if (audio_video == "audio" and form != "none"):
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{
@@ -30,9 +30,18 @@ def get_link():
             'outtmpl': 'temp/%(title)s.%(ext)s',
             'logger': logging.getLogger(),
         }
+    elif (audio_video == "video"):
+        ydl_opts = {
+            'format': 'best',
+            'outtmpl': 'temp/%(title)s.%(ext)s',
+            'logger': logging.getLogger(),
+        }
     else:
         ydl_opts = {
             'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+            }],
             'outtmpl': 'temp/%(title)s.%(ext)s',
             'logger': logging.getLogger(),
         }
@@ -48,4 +57,5 @@ def get_link():
                 found_file = name
         return send_from_directory(temp_path, found_file, as_attachment=True)
     except Exception as e:
+        logging.error(e)
         return Response("{'error': e}", status=403, mimetype='application/json')
