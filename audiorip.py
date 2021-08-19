@@ -14,7 +14,6 @@ def index():
 @app.route("/get_link", methods=["POST"])
 def get_link():
     data = request.get_json()
-    print(data)
     link = data["link"]
     audio_video = data["audioVideo"]
     form = data["format"]
@@ -27,6 +26,7 @@ def get_link():
                 'preferredcodec': form,
                 'preferredquality': quality,
             }],
+            'noplaylist': True,
             'outtmpl': 'temp/%(title)s.%(ext)s',
             'logger': logging.getLogger(),
         }
@@ -50,14 +50,13 @@ def get_link():
             info = ydl.extract_info(link, download=True)
             ext = info.get("ext")
             filename = ydl.prepare_filename(info)
+        print(filename)
         if (audio_video == "video"):
             title = filename.replace(("temp/"), "")
         else:
             title = filename.replace(ext,form)
             title = title.replace(("temp/"), "")
-        print(title)
         for name in os.listdir(temp_path):
-            print (name)
             if title in name:
                 found_file = name
         return send_from_directory(temp_path, found_file, as_attachment=True)
