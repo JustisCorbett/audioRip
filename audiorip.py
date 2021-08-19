@@ -33,6 +33,7 @@ def get_link():
     elif (audio_video == "video"):
         ydl_opts = {
             'format': 'best',
+            'noplaylist': True,
             'outtmpl': 'temp/%(title)s.%(ext)s',
             'logger': logging.getLogger(),
         }
@@ -42,6 +43,7 @@ def get_link():
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
             }],
+            'noplaylist': True,
             'outtmpl': 'temp/%(title)s.%(ext)s',
             'logger': logging.getLogger(),
         }
