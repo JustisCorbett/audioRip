@@ -62,4 +62,4 @@ def get_link():
         return send_from_directory(temp_path, found_file, as_attachment=True)
     except Exception as e:
         logging.error(e)
-        return Response("{'error': e}", status=403, mimetype='application/json')
+        return Response("error", status=403, mimetype='application/json')

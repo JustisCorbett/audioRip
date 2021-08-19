@@ -69,8 +69,7 @@ async function sendLink() {
         if (loading.classList.contains("hidden") == false) {
             loading.classList.toggle("hidden");
         }
-        re = await response.json()
-        songTitle.innerText = re["error"];
+        songTitle.innerText = "Rip Failed: Make sure link is not playlist, or try again later...";
     }
     return 1;
 };
