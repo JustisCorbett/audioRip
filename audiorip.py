@@ -50,9 +50,11 @@ def get_link():
             info = ydl.extract_info(link, download=True)
             ext = info.get("ext")
             filename = ydl.prepare_filename(info)
-        title = filename.replace(("." + ext), "")
+        title = filename.replace(ext,form)
         title = title.replace(("temp/"), "")
+        print(title)
         for name in os.listdir(temp_path):
+            print (name)
             if title in name:
                 found_file = name
         return send_from_directory(temp_path, found_file, as_attachment=True)
