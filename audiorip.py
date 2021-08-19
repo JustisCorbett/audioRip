@@ -50,8 +50,11 @@ def get_link():
             info = ydl.extract_info(link, download=True)
             ext = info.get("ext")
             filename = ydl.prepare_filename(info)
-        title = filename.replace(ext,form)
-        title = title.replace(("temp/"), "")
+        if (audio_video == "video"):
+            title = filename.replace(("temp/"), "")
+        else:
+            title = filename.replace(ext,form)
+            title = title.replace(("temp/"), "")
         print(title)
         for name in os.listdir(temp_path):
             print (name)
