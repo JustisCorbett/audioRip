@@ -44,15 +44,17 @@ def get_link():
                 'key': 'FFmpegExtractAudio',
             }],
             'noplaylist': True,
-            'outtmpl': 'temp/%(title)s.%(ext)s',
+            'outtmpl': 'temp/%(title)s.opus',
             'logger': logging.getLogger(),
         }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(link, download=True)
-            ext = info.get("ext")
+            if (form != None):
+                ext = info.get("ext")
+            else:
+                ext = "opus"
             filename = ydl.prepare_filename(info)
-        print(filename)
         if (audio_video == "video"):
             title = filename.replace(("temp/"), "")
         else:
