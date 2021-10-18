@@ -7,6 +7,7 @@ async function hideSelect() {
 }
 
 async function sendLink() {
+    let button = document.getElementById("submit-button");
     let link = document.getElementById("link");
     let loading = document.getElementById("loading");
     let audioVideo = document.getElementById("audio-video").value;
@@ -31,6 +32,7 @@ async function sendLink() {
         loading.classList.toggle("hidden");
     }
     let songTitle = document.getElementById("song-title");
+    button.classList.toggle("is-loading");
     songTitle.innerText = "Ripping. Please Wait..."
     let input = document.getElementById("input-form").value;
     let data = {link: input,
@@ -65,11 +67,14 @@ async function sendLink() {
             loading.classList.toggle("hidden");
         }
         songTitle.innerText = cleanFilename;
+        button.classList.toggle("is-loading");
     } else {
         if (loading.classList.contains("hidden") == false) {
             loading.classList.toggle("hidden");
         }
         songTitle.innerText = "Rip Failed: Make sure link is not playlist, or try again later...";
+        button.classList.toggle("is-loading");
     }
+    
     return 1;
 };
