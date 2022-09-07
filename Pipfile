@@ -7,11 +7,11 @@ name = "pypi"
 flask = "*"
 yt-dlp = "*"
 ffmpeg = "*"
-waitress = "*"
 ffprobe = "*"
 python-magic = "*"
+gunicorn = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.10.4"
