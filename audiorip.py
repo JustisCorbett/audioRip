@@ -29,6 +29,7 @@ def get_link():
             'noplaylist': True,
             'outtmpl': 'temp/%(title)s.%(ext)s',
             'logger': logging.getLogger(),
+            'restrictfilenames': True,
         }
     elif (audio_video == "video"):
         ydl_opts = {
@@ -36,6 +37,7 @@ def get_link():
             'noplaylist': True,
             'outtmpl': 'temp/%(title)s.%(ext)s',
             'logger': logging.getLogger(),
+            'restrictfilenames': True,
         }
     else:
         ydl_opts = {
@@ -46,6 +48,7 @@ def get_link():
             'noplaylist': True,
             'outtmpl': 'temp/%(title)s.opus',
             'logger': logging.getLogger(),
+            'restrictfilenames': True,
         }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -55,9 +58,9 @@ def get_link():
             else:
                 ext = "opus"
             filename = ydl.prepare_filename(info)
-        if (audio_video == "video"):
+        if (audio_video != "video"):
             #title = filename.replace(("temp/"), "")
-        else:
+        #else:
             title = filename.replace(ext,form)
             #title = title.replace(("temp/"), "")
         #for name in os.listdir("./temp"):
@@ -67,4 +70,12 @@ def get_link():
         return jsonify(filename=title)
     except Exception as e:
         logging.error(e)
-        return Response(("error" + e), status=403, mimetype='application/json')
+        return Response(e, status=403, mimetype='application/json')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000, debug=True)
+
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
