@@ -59,9 +59,10 @@ def get_link():
                 ext = "opus"
             filename = ydl.prepare_filename(info)
         if (audio_video != "video"):
-            #title = filename.replace(("temp/"), "")
-        #else:
             title = filename.replace(ext,form)
+            #title = filename.replace(("temp/"), "")
+        else:
+            title = filename
             #title = title.replace(("temp/"), "")
         #for name in os.listdir("./temp"):
         #    if title in name:
