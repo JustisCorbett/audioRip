@@ -53,20 +53,21 @@ async function sendLink() {
         body: JSON.stringify(data)
     });
     if (response.ok) {
-        let headers = response.headers
-        filename = headers.get("Content-Disposition").split("filename=")[1];
-        cleanFilename = filename.split('"')[1];
-        let blob = await response.blob();
-        let url = URL.createObjectURL(blob);
-        link.href = url;
-        link.download = cleanFilename;
+        // let headers = response.headers
+        // filename = headers.get("Content-Disposition").split("filename=")[1];
+        // cleanFilename = filename.split('"')[1];
+        // let blob = await response.blob();
+        // let url = URL.createObjectURL(blob);
+        let data = await response.json();
+        let filename = data["filename"];
+        link.href = window.location.href + filename;
         if (link.classList.contains("hidden")) {
             link.classList.toggle("hidden");
         }
         if (loading.classList.contains("hidden") == false) {
             loading.classList.toggle("hidden");
         }
-        songTitle.innerText = cleanFilename;
+        songTitle.innerText = filename;
         button.classList.toggle("is-loading");
     } else {
         if (loading.classList.contains("hidden") == false) {
