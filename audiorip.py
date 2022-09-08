@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, send_from_directory, Response
+from flask import Flask, render_template, request, send_from_directory, Response, jsonify
 import logging
 import yt_dlp
 import os
 
 app = Flask(__name__)
 
-temp_path = os.environ.get("TEMP_FOLDER_PATH")
+#temp_path = os.path
 
 @app.route("/")
 def index():
@@ -56,14 +56,15 @@ def get_link():
                 ext = "opus"
             filename = ydl.prepare_filename(info)
         if (audio_video == "video"):
-            title = filename.replace(("temp/"), "")
+            #title = filename.replace(("temp/"), "")
         else:
             title = filename.replace(ext,form)
-            title = title.replace(("temp/"), "")
-        for name in os.listdir(temp_path):
-            if title in name:
-                found_file = name
-        return send_from_directory(temp_path, found_file, as_attachment=True)
+            #title = title.replace(("temp/"), "")
+        #for name in os.listdir("./temp"):
+        #    if title in name:
+        #       found_file = name
+        #return send_from_directory(temp_path, found_file, as_attachment=True)
+        return jsonify(filename=title)
     except Exception as e:
         logging.error(e)
-        return Response("error", status=403, mimetype='application/json')
+        return Response(("error" + e), status=403, mimetype='application/json')
