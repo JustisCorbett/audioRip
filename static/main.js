@@ -67,7 +67,7 @@ async function sendLink() {
         if (loading.classList.contains("hidden") == false) {
             loading.classList.toggle("hidden");
         }
-        songTitle.innerText = filename;
+        songTitle.innerText = filename.substring(4);
         button.classList.toggle("is-loading");
     } else {
         if (loading.classList.contains("hidden") == false) {
