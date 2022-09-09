@@ -11,10 +11,11 @@ crontab = Crontab(app)
 # delete old temporary files cronjob
 @crontab.job(minute="30", hour="0")
 def delete_temp_files():
-    temp_dir = Path("/temp")
+    temp_dir = Path("temp")
     curr_time = time.time()
     for file in temp_dir.iterdir():
-        if file.stat().st_mtime - curr_time > 600:
+        print(curr_time - file.stat().st_mtime)
+        if  curr_time - file.stat().st_mtime > 600:
             file.unlink()
 
 @app.route("/")
