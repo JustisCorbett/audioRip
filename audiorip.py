@@ -13,7 +13,7 @@ crontab = Crontab(app)
 def delete_temp_files():
     temp_dir = Path("/temp")
     curr_time = time.time()
-    for file in temp_dir:
+    for file in temp_dir.iterdir():
         if file.stat().st_mtime - curr_time > 600:
             file.unlink()
 
