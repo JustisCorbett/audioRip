@@ -1,11 +1,21 @@
 from flask import Flask, render_template, request, send_from_directory, Response, jsonify
 import logging
 import yt_dlp
-import os
+from pathlib import Path
+import time
+from flask_crontab import Crontab
 
 app = Flask(__name__)
+crontab = Crontab(app)
 
-#temp_path = os.path
+# delete old temporary files cronjob
+@crontab.job(minute="30", hour="0")
+def delete_temp_files():
+    temp_dir = Path("/temp")
+    curr_time = time.time()
+    for file in temp_dir:
+        if file.stat().st_mtime - curr_time > 600:
+            file.unlink()
 
 @app.route("/")
 def index():
@@ -60,14 +70,8 @@ def get_link():
             filename = ydl.prepare_filename(info)
         if (audio_video != "video"):
             title = filename.replace(ext,form)
-            #title = filename.replace(("temp/"), "")
         else:
             title = filename
-            #title = title.replace(("temp/"), "")
-        #for name in os.listdir("./temp"):
-        #    if title in name:
-        #       found_file = name
-        #return send_from_directory(temp_path, found_file, as_attachment=True)
         return jsonify(filename=title)
     except Exception as e:
         logging.error(e)

@@ -10,6 +10,7 @@ ffmpeg = "*"
 ffprobe = "*"
 python-magic = "*"
 gunicorn = "*"
+flask-crontab = "*"
 
 [dev-packages]
 
