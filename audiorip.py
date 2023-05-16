@@ -9,7 +9,7 @@ app = Flask(__name__)
 crontab = Crontab(app)
 
 # delete old temporary files cronjob
-@crontab.job(minute="30", hour="0")
+@crontab.job(minute="30")
 def delete_temp_files():
     temp_dir = Path("temp")
     curr_time = time.time()
